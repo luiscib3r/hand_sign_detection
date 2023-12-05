@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:palm_detection/app/app.dart';
+import 'package:palm_detection/app/palm_detector/palm_detection.dart';
 import 'package:palm_detection/app/palm_detector/palm_detector.dart';
+import 'package:palm_detection/home/home.dart';
 
 class DetectorWidget extends StatefulWidget {
   const DetectorWidget({super.key});
@@ -14,7 +16,12 @@ class DetectorWidget extends StatefulWidget {
 
 class _DetectorWidgetState extends State<DetectorWidget>
     with WidgetsBindingObserver {
+  // Model
   late final PalmDetector palmDetector;
+  late final StreamSubscription<List<PalmDetection>> _subscription;
+  List<PalmDetection> detections = [];
+
+  // Camera
   int _selectedCamera = 0;
 
   set selectedCamera(int value) {
@@ -45,6 +52,11 @@ class _DetectorWidgetState extends State<DetectorWidget>
       modelAssetPath: 'assets/palm_detection_full.tflite',
       anchorsAssetPath: 'assets/anchors.csv',
     );
+
+    _subscription = palmDetector.results.listen((event) {
+      detections = event;
+      setState(() {});
+    });
   }
 
   Future<void> initializeCamera() async {
@@ -97,6 +109,25 @@ class _DetectorWidgetState extends State<DetectorWidget>
             return const Center(
               child: CircularProgressIndicator(),
             );
+          },
+        ),
+        Builder(
+          builder: (context) {
+            if (cameraController != null &&
+                cameraController!.value.isInitialized) {
+              final aspect = 1 / cameraController!.value.aspectRatio;
+
+              return AspectRatio(
+                aspectRatio: aspect,
+                child: Stack(
+                  children: [
+                    ...detections.map((e) => BoxWidget(detection: e)),
+                  ],
+                ),
+              );
+            }
+
+            return const SizedBox.shrink();
           },
         ),
         // Select Camera
@@ -155,6 +186,7 @@ class _DetectorWidgetState extends State<DetectorWidget>
     WidgetsBinding.instance.removeObserver(this);
     stopCamera();
     palmDetector.stop();
+    _subscription.cancel();
     super.dispose();
   }
 }
