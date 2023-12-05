@@ -19,32 +19,37 @@ mixin _$Command {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SendPort sendPort) start,
-    required TResult Function(
-            RootIsolateToken rootToken, int interpreterAddress)
+    required TResult Function(RootIsolateToken rootToken,
+            int interpreterAddress, List<List<double>> anchors)
         initService,
     required TResult Function(CameraImage frame) detect,
     required TResult Function() ready,
     required TResult Function() busy,
+    required TResult Function(List<PalmDetection> detections) result,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SendPort sendPort)? start,
-    TResult? Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult? Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult? Function(CameraImage frame)? detect,
     TResult? Function()? ready,
     TResult? Function()? busy,
+    TResult? Function(List<PalmDetection> detections)? result,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SendPort sendPort)? start,
-    TResult Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult Function(CameraImage frame)? detect,
     TResult Function()? ready,
     TResult Function()? busy,
+    TResult Function(List<PalmDetection> detections)? result,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +60,7 @@ mixin _$Command {
     required TResult Function(_CommandDetect value) detect,
     required TResult Function(_CommandReady value) ready,
     required TResult Function(_CommandBusy value) busy,
+    required TResult Function(_CommandResult value) result,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +70,7 @@ mixin _$Command {
     TResult? Function(_CommandDetect value)? detect,
     TResult? Function(_CommandReady value)? ready,
     TResult? Function(_CommandBusy value)? busy,
+    TResult? Function(_CommandResult value)? result,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,6 +80,7 @@ mixin _$Command {
     TResult Function(_CommandDetect value)? detect,
     TResult Function(_CommandReady value)? ready,
     TResult Function(_CommandBusy value)? busy,
+    TResult Function(_CommandResult value)? result,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -161,12 +169,13 @@ class _$CommandStartImpl implements _CommandStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SendPort sendPort) start,
-    required TResult Function(
-            RootIsolateToken rootToken, int interpreterAddress)
+    required TResult Function(RootIsolateToken rootToken,
+            int interpreterAddress, List<List<double>> anchors)
         initService,
     required TResult Function(CameraImage frame) detect,
     required TResult Function() ready,
     required TResult Function() busy,
+    required TResult Function(List<PalmDetection> detections) result,
   }) {
     return start(sendPort);
   }
@@ -175,11 +184,13 @@ class _$CommandStartImpl implements _CommandStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SendPort sendPort)? start,
-    TResult? Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult? Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult? Function(CameraImage frame)? detect,
     TResult? Function()? ready,
     TResult? Function()? busy,
+    TResult? Function(List<PalmDetection> detections)? result,
   }) {
     return start?.call(sendPort);
   }
@@ -188,11 +199,13 @@ class _$CommandStartImpl implements _CommandStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SendPort sendPort)? start,
-    TResult Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult Function(CameraImage frame)? detect,
     TResult Function()? ready,
     TResult Function()? busy,
+    TResult Function(List<PalmDetection> detections)? result,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -209,6 +222,7 @@ class _$CommandStartImpl implements _CommandStart {
     required TResult Function(_CommandDetect value) detect,
     required TResult Function(_CommandReady value) ready,
     required TResult Function(_CommandBusy value) busy,
+    required TResult Function(_CommandResult value) result,
   }) {
     return start(this);
   }
@@ -221,6 +235,7 @@ class _$CommandStartImpl implements _CommandStart {
     TResult? Function(_CommandDetect value)? detect,
     TResult? Function(_CommandReady value)? ready,
     TResult? Function(_CommandBusy value)? busy,
+    TResult? Function(_CommandResult value)? result,
   }) {
     return start?.call(this);
   }
@@ -233,6 +248,7 @@ class _$CommandStartImpl implements _CommandStart {
     TResult Function(_CommandDetect value)? detect,
     TResult Function(_CommandReady value)? ready,
     TResult Function(_CommandBusy value)? busy,
+    TResult Function(_CommandResult value)? result,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -259,7 +275,10 @@ abstract class _$$CommandRegisterIsolateImplCopyWith<$Res> {
           $Res Function(_$CommandRegisterIsolateImpl) then) =
       __$$CommandRegisterIsolateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RootIsolateToken rootToken, int interpreterAddress});
+  $Res call(
+      {RootIsolateToken rootToken,
+      int interpreterAddress,
+      List<List<double>> anchors});
 }
 
 /// @nodoc
@@ -276,6 +295,7 @@ class __$$CommandRegisterIsolateImplCopyWithImpl<$Res>
   $Res call({
     Object? rootToken = null,
     Object? interpreterAddress = null,
+    Object? anchors = null,
   }) {
     return _then(_$CommandRegisterIsolateImpl(
       rootToken: null == rootToken
@@ -286,6 +306,10 @@ class __$$CommandRegisterIsolateImplCopyWithImpl<$Res>
           ? _value.interpreterAddress
           : interpreterAddress // ignore: cast_nullable_to_non_nullable
               as int,
+      anchors: null == anchors
+          ? _value._anchors
+          : anchors // ignore: cast_nullable_to_non_nullable
+              as List<List<double>>,
     ));
   }
 }
@@ -294,16 +318,26 @@ class __$$CommandRegisterIsolateImplCopyWithImpl<$Res>
 
 class _$CommandRegisterIsolateImpl implements _CommandRegisterIsolate {
   const _$CommandRegisterIsolateImpl(
-      {required this.rootToken, required this.interpreterAddress});
+      {required this.rootToken,
+      required this.interpreterAddress,
+      required final List<List<double>> anchors})
+      : _anchors = anchors;
 
   @override
   final RootIsolateToken rootToken;
   @override
   final int interpreterAddress;
+  final List<List<double>> _anchors;
+  @override
+  List<List<double>> get anchors {
+    if (_anchors is EqualUnmodifiableListView) return _anchors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_anchors);
+  }
 
   @override
   String toString() {
-    return 'Command.initService(rootToken: $rootToken, interpreterAddress: $interpreterAddress)';
+    return 'Command.initService(rootToken: $rootToken, interpreterAddress: $interpreterAddress, anchors: $anchors)';
   }
 
   @override
@@ -314,11 +348,13 @@ class _$CommandRegisterIsolateImpl implements _CommandRegisterIsolate {
             (identical(other.rootToken, rootToken) ||
                 other.rootToken == rootToken) &&
             (identical(other.interpreterAddress, interpreterAddress) ||
-                other.interpreterAddress == interpreterAddress));
+                other.interpreterAddress == interpreterAddress) &&
+            const DeepCollectionEquality().equals(other._anchors, _anchors));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rootToken, interpreterAddress);
+  int get hashCode => Object.hash(runtimeType, rootToken, interpreterAddress,
+      const DeepCollectionEquality().hash(_anchors));
 
   @JsonKey(ignore: true)
   @override
@@ -331,42 +367,47 @@ class _$CommandRegisterIsolateImpl implements _CommandRegisterIsolate {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SendPort sendPort) start,
-    required TResult Function(
-            RootIsolateToken rootToken, int interpreterAddress)
+    required TResult Function(RootIsolateToken rootToken,
+            int interpreterAddress, List<List<double>> anchors)
         initService,
     required TResult Function(CameraImage frame) detect,
     required TResult Function() ready,
     required TResult Function() busy,
+    required TResult Function(List<PalmDetection> detections) result,
   }) {
-    return initService(rootToken, interpreterAddress);
+    return initService(rootToken, interpreterAddress, anchors);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SendPort sendPort)? start,
-    TResult? Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult? Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult? Function(CameraImage frame)? detect,
     TResult? Function()? ready,
     TResult? Function()? busy,
+    TResult? Function(List<PalmDetection> detections)? result,
   }) {
-    return initService?.call(rootToken, interpreterAddress);
+    return initService?.call(rootToken, interpreterAddress, anchors);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SendPort sendPort)? start,
-    TResult Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult Function(CameraImage frame)? detect,
     TResult Function()? ready,
     TResult Function()? busy,
+    TResult Function(List<PalmDetection> detections)? result,
     required TResult orElse(),
   }) {
     if (initService != null) {
-      return initService(rootToken, interpreterAddress);
+      return initService(rootToken, interpreterAddress, anchors);
     }
     return orElse();
   }
@@ -379,6 +420,7 @@ class _$CommandRegisterIsolateImpl implements _CommandRegisterIsolate {
     required TResult Function(_CommandDetect value) detect,
     required TResult Function(_CommandReady value) ready,
     required TResult Function(_CommandBusy value) busy,
+    required TResult Function(_CommandResult value) result,
   }) {
     return initService(this);
   }
@@ -391,6 +433,7 @@ class _$CommandRegisterIsolateImpl implements _CommandRegisterIsolate {
     TResult? Function(_CommandDetect value)? detect,
     TResult? Function(_CommandReady value)? ready,
     TResult? Function(_CommandBusy value)? busy,
+    TResult? Function(_CommandResult value)? result,
   }) {
     return initService?.call(this);
   }
@@ -403,6 +446,7 @@ class _$CommandRegisterIsolateImpl implements _CommandRegisterIsolate {
     TResult Function(_CommandDetect value)? detect,
     TResult Function(_CommandReady value)? ready,
     TResult Function(_CommandBusy value)? busy,
+    TResult Function(_CommandResult value)? result,
     required TResult orElse(),
   }) {
     if (initService != null) {
@@ -414,11 +458,14 @@ class _$CommandRegisterIsolateImpl implements _CommandRegisterIsolate {
 
 abstract class _CommandRegisterIsolate implements Command {
   const factory _CommandRegisterIsolate(
-      {required final RootIsolateToken rootToken,
-      required final int interpreterAddress}) = _$CommandRegisterIsolateImpl;
+          {required final RootIsolateToken rootToken,
+          required final int interpreterAddress,
+          required final List<List<double>> anchors}) =
+      _$CommandRegisterIsolateImpl;
 
   RootIsolateToken get rootToken;
   int get interpreterAddress;
+  List<List<double>> get anchors;
   @JsonKey(ignore: true)
   _$$CommandRegisterIsolateImplCopyWith<_$CommandRegisterIsolateImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -489,12 +536,13 @@ class _$CommandDetectImpl implements _CommandDetect {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SendPort sendPort) start,
-    required TResult Function(
-            RootIsolateToken rootToken, int interpreterAddress)
+    required TResult Function(RootIsolateToken rootToken,
+            int interpreterAddress, List<List<double>> anchors)
         initService,
     required TResult Function(CameraImage frame) detect,
     required TResult Function() ready,
     required TResult Function() busy,
+    required TResult Function(List<PalmDetection> detections) result,
   }) {
     return detect(frame);
   }
@@ -503,11 +551,13 @@ class _$CommandDetectImpl implements _CommandDetect {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SendPort sendPort)? start,
-    TResult? Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult? Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult? Function(CameraImage frame)? detect,
     TResult? Function()? ready,
     TResult? Function()? busy,
+    TResult? Function(List<PalmDetection> detections)? result,
   }) {
     return detect?.call(frame);
   }
@@ -516,11 +566,13 @@ class _$CommandDetectImpl implements _CommandDetect {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SendPort sendPort)? start,
-    TResult Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult Function(CameraImage frame)? detect,
     TResult Function()? ready,
     TResult Function()? busy,
+    TResult Function(List<PalmDetection> detections)? result,
     required TResult orElse(),
   }) {
     if (detect != null) {
@@ -537,6 +589,7 @@ class _$CommandDetectImpl implements _CommandDetect {
     required TResult Function(_CommandDetect value) detect,
     required TResult Function(_CommandReady value) ready,
     required TResult Function(_CommandBusy value) busy,
+    required TResult Function(_CommandResult value) result,
   }) {
     return detect(this);
   }
@@ -549,6 +602,7 @@ class _$CommandDetectImpl implements _CommandDetect {
     TResult? Function(_CommandDetect value)? detect,
     TResult? Function(_CommandReady value)? ready,
     TResult? Function(_CommandBusy value)? busy,
+    TResult? Function(_CommandResult value)? result,
   }) {
     return detect?.call(this);
   }
@@ -561,6 +615,7 @@ class _$CommandDetectImpl implements _CommandDetect {
     TResult Function(_CommandDetect value)? detect,
     TResult Function(_CommandReady value)? ready,
     TResult Function(_CommandBusy value)? busy,
+    TResult Function(_CommandResult value)? result,
     required TResult orElse(),
   }) {
     if (detect != null) {
@@ -619,12 +674,13 @@ class _$CommandReadyImpl implements _CommandReady {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SendPort sendPort) start,
-    required TResult Function(
-            RootIsolateToken rootToken, int interpreterAddress)
+    required TResult Function(RootIsolateToken rootToken,
+            int interpreterAddress, List<List<double>> anchors)
         initService,
     required TResult Function(CameraImage frame) detect,
     required TResult Function() ready,
     required TResult Function() busy,
+    required TResult Function(List<PalmDetection> detections) result,
   }) {
     return ready();
   }
@@ -633,11 +689,13 @@ class _$CommandReadyImpl implements _CommandReady {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SendPort sendPort)? start,
-    TResult? Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult? Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult? Function(CameraImage frame)? detect,
     TResult? Function()? ready,
     TResult? Function()? busy,
+    TResult? Function(List<PalmDetection> detections)? result,
   }) {
     return ready?.call();
   }
@@ -646,11 +704,13 @@ class _$CommandReadyImpl implements _CommandReady {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SendPort sendPort)? start,
-    TResult Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult Function(CameraImage frame)? detect,
     TResult Function()? ready,
     TResult Function()? busy,
+    TResult Function(List<PalmDetection> detections)? result,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -667,6 +727,7 @@ class _$CommandReadyImpl implements _CommandReady {
     required TResult Function(_CommandDetect value) detect,
     required TResult Function(_CommandReady value) ready,
     required TResult Function(_CommandBusy value) busy,
+    required TResult Function(_CommandResult value) result,
   }) {
     return ready(this);
   }
@@ -679,6 +740,7 @@ class _$CommandReadyImpl implements _CommandReady {
     TResult? Function(_CommandDetect value)? detect,
     TResult? Function(_CommandReady value)? ready,
     TResult? Function(_CommandBusy value)? busy,
+    TResult? Function(_CommandResult value)? result,
   }) {
     return ready?.call(this);
   }
@@ -691,6 +753,7 @@ class _$CommandReadyImpl implements _CommandReady {
     TResult Function(_CommandDetect value)? detect,
     TResult Function(_CommandReady value)? ready,
     TResult Function(_CommandBusy value)? busy,
+    TResult Function(_CommandResult value)? result,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -743,12 +806,13 @@ class _$CommandBusyImpl implements _CommandBusy {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SendPort sendPort) start,
-    required TResult Function(
-            RootIsolateToken rootToken, int interpreterAddress)
+    required TResult Function(RootIsolateToken rootToken,
+            int interpreterAddress, List<List<double>> anchors)
         initService,
     required TResult Function(CameraImage frame) detect,
     required TResult Function() ready,
     required TResult Function() busy,
+    required TResult Function(List<PalmDetection> detections) result,
   }) {
     return busy();
   }
@@ -757,11 +821,13 @@ class _$CommandBusyImpl implements _CommandBusy {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SendPort sendPort)? start,
-    TResult? Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult? Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult? Function(CameraImage frame)? detect,
     TResult? Function()? ready,
     TResult? Function()? busy,
+    TResult? Function(List<PalmDetection> detections)? result,
   }) {
     return busy?.call();
   }
@@ -770,11 +836,13 @@ class _$CommandBusyImpl implements _CommandBusy {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SendPort sendPort)? start,
-    TResult Function(RootIsolateToken rootToken, int interpreterAddress)?
+    TResult Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
         initService,
     TResult Function(CameraImage frame)? detect,
     TResult Function()? ready,
     TResult Function()? busy,
+    TResult Function(List<PalmDetection> detections)? result,
     required TResult orElse(),
   }) {
     if (busy != null) {
@@ -791,6 +859,7 @@ class _$CommandBusyImpl implements _CommandBusy {
     required TResult Function(_CommandDetect value) detect,
     required TResult Function(_CommandReady value) ready,
     required TResult Function(_CommandBusy value) busy,
+    required TResult Function(_CommandResult value) result,
   }) {
     return busy(this);
   }
@@ -803,6 +872,7 @@ class _$CommandBusyImpl implements _CommandBusy {
     TResult? Function(_CommandDetect value)? detect,
     TResult? Function(_CommandReady value)? ready,
     TResult? Function(_CommandBusy value)? busy,
+    TResult? Function(_CommandResult value)? result,
   }) {
     return busy?.call(this);
   }
@@ -815,6 +885,7 @@ class _$CommandBusyImpl implements _CommandBusy {
     TResult Function(_CommandDetect value)? detect,
     TResult Function(_CommandReady value)? ready,
     TResult Function(_CommandBusy value)? busy,
+    TResult Function(_CommandResult value)? result,
     required TResult orElse(),
   }) {
     if (busy != null) {
@@ -826,4 +897,176 @@ class _$CommandBusyImpl implements _CommandBusy {
 
 abstract class _CommandBusy implements Command {
   const factory _CommandBusy() = _$CommandBusyImpl;
+}
+
+/// @nodoc
+abstract class _$$CommandResultImplCopyWith<$Res> {
+  factory _$$CommandResultImplCopyWith(
+          _$CommandResultImpl value, $Res Function(_$CommandResultImpl) then) =
+      __$$CommandResultImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<PalmDetection> detections});
+}
+
+/// @nodoc
+class __$$CommandResultImplCopyWithImpl<$Res>
+    extends _$CommandCopyWithImpl<$Res, _$CommandResultImpl>
+    implements _$$CommandResultImplCopyWith<$Res> {
+  __$$CommandResultImplCopyWithImpl(
+      _$CommandResultImpl _value, $Res Function(_$CommandResultImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? detections = null,
+  }) {
+    return _then(_$CommandResultImpl(
+      detections: null == detections
+          ? _value._detections
+          : detections // ignore: cast_nullable_to_non_nullable
+              as List<PalmDetection>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CommandResultImpl implements _CommandResult {
+  const _$CommandResultImpl({required final List<PalmDetection> detections})
+      : _detections = detections;
+
+  final List<PalmDetection> _detections;
+  @override
+  List<PalmDetection> get detections {
+    if (_detections is EqualUnmodifiableListView) return _detections;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_detections);
+  }
+
+  @override
+  String toString() {
+    return 'Command.result(detections: $detections)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CommandResultImpl &&
+            const DeepCollectionEquality()
+                .equals(other._detections, _detections));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_detections));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CommandResultImplCopyWith<_$CommandResultImpl> get copyWith =>
+      __$$CommandResultImplCopyWithImpl<_$CommandResultImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SendPort sendPort) start,
+    required TResult Function(RootIsolateToken rootToken,
+            int interpreterAddress, List<List<double>> anchors)
+        initService,
+    required TResult Function(CameraImage frame) detect,
+    required TResult Function() ready,
+    required TResult Function() busy,
+    required TResult Function(List<PalmDetection> detections) result,
+  }) {
+    return result(detections);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SendPort sendPort)? start,
+    TResult? Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
+        initService,
+    TResult? Function(CameraImage frame)? detect,
+    TResult? Function()? ready,
+    TResult? Function()? busy,
+    TResult? Function(List<PalmDetection> detections)? result,
+  }) {
+    return result?.call(detections);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SendPort sendPort)? start,
+    TResult Function(RootIsolateToken rootToken, int interpreterAddress,
+            List<List<double>> anchors)?
+        initService,
+    TResult Function(CameraImage frame)? detect,
+    TResult Function()? ready,
+    TResult Function()? busy,
+    TResult Function(List<PalmDetection> detections)? result,
+    required TResult orElse(),
+  }) {
+    if (result != null) {
+      return result(detections);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CommandStart value) start,
+    required TResult Function(_CommandRegisterIsolate value) initService,
+    required TResult Function(_CommandDetect value) detect,
+    required TResult Function(_CommandReady value) ready,
+    required TResult Function(_CommandBusy value) busy,
+    required TResult Function(_CommandResult value) result,
+  }) {
+    return result(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CommandStart value)? start,
+    TResult? Function(_CommandRegisterIsolate value)? initService,
+    TResult? Function(_CommandDetect value)? detect,
+    TResult? Function(_CommandReady value)? ready,
+    TResult? Function(_CommandBusy value)? busy,
+    TResult? Function(_CommandResult value)? result,
+  }) {
+    return result?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CommandStart value)? start,
+    TResult Function(_CommandRegisterIsolate value)? initService,
+    TResult Function(_CommandDetect value)? detect,
+    TResult Function(_CommandReady value)? ready,
+    TResult Function(_CommandBusy value)? busy,
+    TResult Function(_CommandResult value)? result,
+    required TResult orElse(),
+  }) {
+    if (result != null) {
+      return result(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CommandResult implements Command {
+  const factory _CommandResult(
+      {required final List<PalmDetection> detections}) = _$CommandResultImpl;
+
+  List<PalmDetection> get detections;
+  @JsonKey(ignore: true)
+  _$$CommandResultImplCopyWith<_$CommandResultImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

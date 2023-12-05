@@ -43,6 +43,7 @@ class _DetectorWidgetState extends State<DetectorWidget>
   Future<void> initializePalmDetector() async {
     palmDetector = await PalmDetector.start(
       modelAssetPath: 'assets/palm_detection_full.tflite',
+      anchorsAssetPath: 'assets/anchors.csv',
     );
   }
 
@@ -56,6 +57,7 @@ class _DetectorWidgetState extends State<DetectorWidget>
       );
 
       await cameraController!.initialize();
+      ScreenParams.previewSize = cameraController!.value.previewSize!;
       await cameraController!.startImageStream(palmDetector.detect);
     }
     setState(() {});
