@@ -1,1 +1,5 @@
 *.pyc
+.dart_tool/
+pubspec.lock
+.idea/
+*.iml

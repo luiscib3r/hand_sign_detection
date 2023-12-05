@@ -4,6 +4,9 @@
 			"path": "."
 		},
 		{
+			"path": "apps/palm_detection"
+		},
+		{
 			"path": "notebooks"
 		}
 	],

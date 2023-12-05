@@ -1,0 +1,4 @@
+name: hand_sign_detection
+
+packages:
+  - apps/**

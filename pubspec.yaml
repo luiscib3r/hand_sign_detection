@@ -1,0 +1,11 @@
+name: hand_sign_detection
+description: Hand Sign Detection Workspace.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.2.0
+
+dev_dependencies:
+  melos: ^3.4.0
+  
