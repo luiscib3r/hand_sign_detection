@@ -10,6 +10,7 @@ import 'package:image/image.dart' as img;
 import 'package:palm_detection/app/extensions/camera_image_extension.dart';
 import 'package:palm_detection/app/palm_detector/candidate_outputs.dart';
 import 'package:palm_detection/app/palm_detector/command.dart';
+import 'package:palm_detection/app/palm_detector/nms.dart';
 import 'package:palm_detection/app/palm_detector/palm_detection.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 
@@ -23,7 +24,7 @@ class PalmDetectorService {
   static const _inputShape = [192, 192];
   static const _outputRegShape = [2016, 18];
   static const _outputClfShape = [2016, 1];
-  static const detectionThreshold = 0.5;
+  static const detectionThreshold = 0.6;
 
   static void run(SendPort sendPort) {
     final receivePort = ReceivePort();
@@ -84,9 +85,13 @@ class PalmDetectorService {
         candidateOutputs.candidateProbabilities,
       );
 
+      final selectedBoxIndex = nms(bbox);
+
+      final selectedBoxes = selectedBoxIndex.map((e) => bbox[e]);
+
       final detections = <PalmDetection>[];
 
-      for (final box in bbox) {
+      for (final box in selectedBoxes) {
         detections.add(
           PalmDetection(
             score: box[4],
